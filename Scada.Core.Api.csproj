@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Scada.Components.Configuration\**" />
+    <Compile Remove="Scada.Components.DummySensor\**" />
+    <Content Remove="Scada.Components.Configuration\**" />
+    <Content Remove="Scada.Components.DummySensor\**" />
+    <EmbeddedResource Remove="Scada.Components.Configuration\**" />
+    <EmbeddedResource Remove="Scada.Components.DummySensor\**" />
+    <None Remove="Scada.Components.Configuration\**" />
+    <None Remove="Scada.Components.DummySensor\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="Scada.Components.Configuration\Scada.Components.Configuration.csproj" />
+    <ProjectReference Include="Scada.Components.DummySensor\Scada.Components.DummySensor.csproj" />
+  </ItemGroup>
+
+</Project>

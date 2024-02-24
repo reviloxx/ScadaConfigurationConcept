@@ -1,0 +1,13 @@
+{
+  "DummySensor": {
+    "TemperatureUnit": "Celsius",
+    "MeasurementIntervalMs": 2000
+  },
+    "Logging": {
+      "LogLevel": {
+        "Default": "Information",
+        "Microsoft.AspNetCore": "Warning"
+      }
+    },
+    "AllowedHosts": "*"
+  }
