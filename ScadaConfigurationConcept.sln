@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scada.Component.Configurati
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scada.Component.TemperatureSensor", "Scada.Component.TemperatureSensor\Scada.Component.TemperatureSensor.csproj", "{B951652D-E723-4235-956C-FADBBB59B3FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scada.Core.Infrastructure", "..\Scada.Core.Infrastructure\Scada.Core.Infrastructure.csproj", "{850EBBF3-FECA-43D8-97F5-2AA22BDBCF5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scada.Core.Infrastructure", "..\Scada.Core.Infrastructure\Scada.Core.Infrastructure.csproj", "{850EBBF3-FECA-43D8-97F5-2AA22BDBCF5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scada.Component.PressureSensor", "..\Scada.Component.PressureSensor\Scada.Component.PressureSensor.csproj", "{E80CC7D2-700A-4EC0-AB4D-461E484E7EB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{850EBBF3-FECA-43D8-97F5-2AA22BDBCF5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{850EBBF3-FECA-43D8-97F5-2AA22BDBCF5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{850EBBF3-FECA-43D8-97F5-2AA22BDBCF5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E80CC7D2-700A-4EC0-AB4D-461E484E7EB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E80CC7D2-700A-4EC0-AB4D-461E484E7EB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E80CC7D2-700A-4EC0-AB4D-461E484E7EB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E80CC7D2-700A-4EC0-AB4D-461E484E7EB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

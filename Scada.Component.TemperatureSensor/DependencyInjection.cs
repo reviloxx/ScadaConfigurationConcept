@@ -1,13 +1,13 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Scada.Components.Configuration;
+using Scada.Component.Configuration;
 
-namespace Scada.Components.TemperatureSensor;
+namespace Scada.Component.TemperatureSensor;
 public static class DependencyInjection
 {
-    public static void RegisterTemperatureSensor(this IServiceCollection services, ScadaConfigurationProvider configurationProvider)
+    public static void RegisterTemperatureSensor(this IServiceCollection services, ScadaConfigurationService configurationProvider)
     {
-        var temperatureSensorConfig = new ConfigurationContainer();
-        configurationProvider.AddConfigurationContainer(temperatureSensorConfig);
-        services.AddSingleton(temperatureSensorConfig);
+        var configurationContainer = new TemperatureSensorConfigurationContainer();
+        services.AddSingleton(configurationContainer);
+        configurationProvider.AddConfigurationContainer(configurationContainer);        
     }
 }

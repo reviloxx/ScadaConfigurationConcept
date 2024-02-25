@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Scada.Component.PressureSensor\Scada.Component.PressureSensor.csproj" />
     <ProjectReference Include="..\Scada.Core.Infrastructure\Scada.Core.Infrastructure.csproj" />
     <ProjectReference Include="Scada.Component.Configuration\Scada.Component.Configuration.csproj" />
     <ProjectReference Include="Scada.Component.TemperatureSensor\Scada.Component.TemperatureSensor.csproj" />

@@ -1,9 +1,10 @@
 ﻿using Microsoft.Extensions.Hosting;
 
-namespace Scada.Components.TemperatureSensor;
-public class TemperatureSensorService(ConfigurationContainer configurationContainer) : IHostedService, IDisposable
+namespace Scada.Component.TemperatureSensor;
+
+public class TemperatureSensorService(TemperatureSensorConfigurationContainer configurationContainer) : IHostedService, IDisposable
 {
-    private readonly ConfigurationContainer _configurationContainer = configurationContainer;
+    private readonly TemperatureSensorConfigurationContainer _configurationContainer = configurationContainer;
     private Timer? _timer = null;
 
     public Task StartAsync(CancellationToken cancellationToken)
