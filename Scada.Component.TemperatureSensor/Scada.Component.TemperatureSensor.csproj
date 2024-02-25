@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Scada.Components.Configuration\Scada.Components.Configuration.csproj" />
+    <ProjectReference Include="..\Scada.Component.Configuration\Scada.Component.Configuration.csproj" />
   </ItemGroup>
 
 </Project>

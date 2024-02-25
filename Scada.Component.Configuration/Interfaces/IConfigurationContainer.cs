@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace Scada.Components.Configuration;
+namespace Scada.Components.Configuration.Interfaces;
 public interface IConfigurationContainer
 {
     public string ConfigurationSectionKey { get; }

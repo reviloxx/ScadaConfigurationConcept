@@ -5,9 +5,11 @@ VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scada.Core.Api", "Scada.Core.Api.csproj", "{0DEE8857-1C1B-40A7-B367-2AEE97D63075}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scada.Components.Configuration", "Scada.Components.Configuration\Scada.Components.Configuration.csproj", "{B78DE396-DBFC-4E7D-B266-3EEC8915FCBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scada.Component.Configuration", "Scada.Component.Configuration\Scada.Component.Configuration.csproj", "{78101D21-56C2-4538-9A17-5DE14D98889A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scada.Components.DummySensor", "Scada.Components.DummySensor\Scada.Components.DummySensor.csproj", "{F0F32B3A-5EBE-4A50-A7EA-907AE23C0892}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scada.Component.TemperatureSensor", "Scada.Component.TemperatureSensor\Scada.Component.TemperatureSensor.csproj", "{B951652D-E723-4235-956C-FADBBB59B3FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scada.Core.Infrastructure", "..\Scada.Core.Infrastructure\Scada.Core.Infrastructure.csproj", "{850EBBF3-FECA-43D8-97F5-2AA22BDBCF5A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +21,18 @@ Global
 		{0DEE8857-1C1B-40A7-B367-2AEE97D63075}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DEE8857-1C1B-40A7-B367-2AEE97D63075}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DEE8857-1C1B-40A7-B367-2AEE97D63075}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B78DE396-DBFC-4E7D-B266-3EEC8915FCBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B78DE396-DBFC-4E7D-B266-3EEC8915FCBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B78DE396-DBFC-4E7D-B266-3EEC8915FCBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B78DE396-DBFC-4E7D-B266-3EEC8915FCBC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F0F32B3A-5EBE-4A50-A7EA-907AE23C0892}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F0F32B3A-5EBE-4A50-A7EA-907AE23C0892}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F0F32B3A-5EBE-4A50-A7EA-907AE23C0892}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F0F32B3A-5EBE-4A50-A7EA-907AE23C0892}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78101D21-56C2-4538-9A17-5DE14D98889A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78101D21-56C2-4538-9A17-5DE14D98889A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78101D21-56C2-4538-9A17-5DE14D98889A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78101D21-56C2-4538-9A17-5DE14D98889A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B951652D-E723-4235-956C-FADBBB59B3FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B951652D-E723-4235-956C-FADBBB59B3FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B951652D-E723-4235-956C-FADBBB59B3FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B951652D-E723-4235-956C-FADBBB59B3FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{850EBBF3-FECA-43D8-97F5-2AA22BDBCF5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{850EBBF3-FECA-43D8-97F5-2AA22BDBCF5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{850EBBF3-FECA-43D8-97F5-2AA22BDBCF5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{850EBBF3-FECA-43D8-97F5-2AA22BDBCF5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

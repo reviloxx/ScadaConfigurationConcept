@@ -1,11 +1,12 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Scada.Components.Configuration;
+using Scada.Components.Configuration.Interfaces;
 
-namespace Scada.Components.DummySensor;
+namespace Scada.Components.TemperatureSensor;
 
 public class ConfigurationContainer : IConfigurationContainer
 {
-    public string ConfigurationSectionKey { get; } = "DummySensor";
+    public string ConfigurationSectionKey { get; } = "TemperatureSensor";
     public Configuration Configuration { get; private set; } = new();
 
     public ValidationResult AcceptConfigurationSection(IConfigurationSection configurationSection)

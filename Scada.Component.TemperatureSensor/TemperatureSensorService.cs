@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Hosting;
 
-namespace Scada.Components.DummySensor;
-public class DummySensorService(ConfigurationContainer configurationContainer) : IHostedService, IDisposable
+namespace Scada.Components.TemperatureSensor;
+public class TemperatureSensorService(ConfigurationContainer configurationContainer) : IHostedService, IDisposable
 {
     private readonly ConfigurationContainer _configurationContainer = configurationContainer;
     private Timer? _timer = null;
