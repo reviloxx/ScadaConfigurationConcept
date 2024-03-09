@@ -30,6 +30,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Readme.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Scada.Component.PressureSensor\Scada.Component.PressureSensor.csproj" />
     <ProjectReference Include="..\Scada.Core.Infrastructure\Scada.Core.Infrastructure.csproj" />
     <ProjectReference Include="Scada.Component.Configuration\Scada.Component.Configuration.csproj" />

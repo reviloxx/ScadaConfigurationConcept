@@ -3,6 +3,6 @@
 namespace Scada.Component.Configuration.Interfaces;
 public interface IConfigurationRepository
 {
-    Task UpdateConfigurationSectionAsync(string key, IConfigurationSection configurationSection, CancellationToken cancellationToken);
-    Task<IConfigurationSection?> GetConfigurationSectionAsync(string key, CancellationToken cancellationToken);
+    Task UpdateConfigurationAsync(string key, IConfiguration configuration, CancellationToken cancellationToken);
+    Task<IConfiguration?> GetConfigurationAsync(string key, CancellationToken cancellationToken);
 }

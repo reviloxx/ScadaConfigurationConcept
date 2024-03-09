@@ -3,7 +3,7 @@
 namespace Scada.Component.Configuration.Interfaces;
 public interface IConfigurationContainer
 {
-    public string ConfigurationSectionKey { get; }
-    public ValidationResult ValidateConfigurationSection(IConfigurationSection configurationSection);
-    public void AcceptConfigurationSection(IConfigurationSection configurationSection);
+    public string ConfigurationKey { get; }
+    public ValidationResult ValidateConfiguration(IConfiguration configuration);
+    public void AcceptConfiguration(IConfiguration configuration);
 }

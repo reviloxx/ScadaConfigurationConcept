@@ -3,10 +3,13 @@
   "profiles": {
     "Demo": {
       "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
       "dotnetRunMessages": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "http://localhost:5093"
     }
   }
 }

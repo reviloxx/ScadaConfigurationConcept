@@ -6,18 +6,18 @@ namespace Scada.Component.TemperatureSensor;
 
 public class TemperatureSensorConfigurationContainer : IConfigurationContainer
 {
-    public string ConfigurationSectionKey { get; } = "TemperatureSensor";
+    public string ConfigurationKey { get; } = "TemperatureSensor";
     public TemperatureSensorConfiguration Configuration { get; private set; } = new();
 
-    public ValidationResult ValidateConfigurationSection(IConfigurationSection configurationSection)
+    public ValidationResult ValidateConfiguration(IConfiguration configuration)
     {
         // TODO: validate configuration and return proper result
         return new ValidationResult() { IsValidConfiguration = true };
     }
 
-    public void AcceptConfigurationSection(IConfigurationSection configurationSection)
+    public void AcceptConfiguration(IConfiguration configuration)
     {
-        configurationSection.Bind(Configuration);
+        configuration.Bind(Configuration);
     }
 }
 
