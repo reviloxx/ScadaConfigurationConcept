@@ -4,13 +4,9 @@ using Scada.Component.PressureSensor;
 using Scada.Core.Infrastructure.Repositories;
 using Scada.Core.Api;
 
-var configRoot = new ConfigurationBuilder()
-    .SetBasePath(Directory.GetCurrentDirectory())
-    .AddJsonFile("initialComponentSettings.json", optional: false)
-    .Build();
 
 // create configuration service
-var configurationService = new ScadaConfigurationService(configRoot, new ConfigurationRepository());
+var configurationService = new ScadaConfigurationService(new ConfigurationRepository());
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton(configurationService);
@@ -24,17 +20,18 @@ builder.Services.RegisterPressureSensor(configurationService);
 // push configurations to all registered components
 await configurationService.PushAllComponentConfigurations();
 
-// start services
+// start sensor services
 builder.Services.AddHostedService<TemperatureSensorService>();
 builder.Services.AddHostedService<PressureSensorService>();
 
-// TODO: register configuration api
 var app = builder.Build();
 
+// add api to update configs
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.MapPost("/config", (ScadaConfigurationService configService, ConfigRequestModel requestModel) => configService.UpdateConfiguration(requestModel.ConfigurationKey, requestModel.Configuration))
-           .ProducesValidationProblem();
+app.MapPut("/config", (ScadaConfigurationService configService, ConfigRequestModel requestModel) 
+    => configService.UpdateConfiguration(requestModel.ConfigurationKey, requestModel.Configuration))
+    .ProducesValidationProblem();
 
 app.Run();

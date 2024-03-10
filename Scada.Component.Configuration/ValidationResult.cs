@@ -8,5 +8,6 @@ public class ValidationResult
 
 public class ValidationError
 {
-
+    public int Code { get; set; }
+    public string? Description { get; set; }
 }

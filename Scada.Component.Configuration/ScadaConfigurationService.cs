@@ -4,11 +4,21 @@ using System.Text;
 
 namespace Scada.Component.Configuration;
 
-public class ScadaConfigurationService(IConfigurationRoot initialConfiguration, IConfigurationRepository repository)
+public class ScadaConfigurationService
 {
-    private readonly IConfigurationRoot _initialConfiguration = initialConfiguration;
-    private readonly IConfigurationRepository _repository = repository;
+    private readonly IConfigurationRepository _repository;
+    private readonly IConfigurationRoot _initialConfiguration;
     private readonly List<IConfigurationContainer> _configurationContainers = [];
+
+    public ScadaConfigurationService(IConfigurationRepository repository)
+    {
+        _repository = repository;
+
+        _initialConfiguration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("initialComponentConfigs.json", optional: false)
+            .Build();
+    }
 
     public void AddConfigurationContainer(IConfigurationContainer configurationContainer)
     {
