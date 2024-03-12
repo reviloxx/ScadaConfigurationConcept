@@ -9,21 +9,25 @@
   <ItemGroup>
     <Compile Remove="Scada.Component.Configuration\**" />
     <Compile Remove="Scada.Component.DummySensor\**" />
+    <Compile Remove="Scada.Component.PressureSensor\**" />
     <Compile Remove="Scada.Component.TemperatureSensor\**" />
     <Compile Remove="Scada.Components.Configuration\**" />
     <Compile Remove="Scada.Components.DummySensor\**" />
     <Content Remove="Scada.Component.Configuration\**" />
     <Content Remove="Scada.Component.DummySensor\**" />
+    <Content Remove="Scada.Component.PressureSensor\**" />
     <Content Remove="Scada.Component.TemperatureSensor\**" />
     <Content Remove="Scada.Components.Configuration\**" />
     <Content Remove="Scada.Components.DummySensor\**" />
     <EmbeddedResource Remove="Scada.Component.Configuration\**" />
     <EmbeddedResource Remove="Scada.Component.DummySensor\**" />
+    <EmbeddedResource Remove="Scada.Component.PressureSensor\**" />
     <EmbeddedResource Remove="Scada.Component.TemperatureSensor\**" />
     <EmbeddedResource Remove="Scada.Components.Configuration\**" />
     <EmbeddedResource Remove="Scada.Components.DummySensor\**" />
     <None Remove="Scada.Component.Configuration\**" />
     <None Remove="Scada.Component.DummySensor\**" />
+    <None Remove="Scada.Component.PressureSensor\**" />
     <None Remove="Scada.Component.TemperatureSensor\**" />
     <None Remove="Scada.Components.Configuration\**" />
     <None Remove="Scada.Components.DummySensor\**" />
@@ -40,10 +44,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Scada.Component.Configuration\Scada.Component.Configuration.csproj" />
     <ProjectReference Include="..\Scada.Component.PressureSensor\Scada.Component.PressureSensor.csproj" />
+    <ProjectReference Include="..\Scada.Component.TemperatureSensor\Scada.Component.TemperatureSensor.csproj" />
     <ProjectReference Include="..\Scada.Core.Infrastructure\Scada.Core.Infrastructure.csproj" />
-    <ProjectReference Include="Scada.Component.Configuration\Scada.Component.Configuration.csproj" />
-    <ProjectReference Include="Scada.Component.TemperatureSensor\Scada.Component.TemperatureSensor.csproj" />
   </ItemGroup>
 
 </Project>
