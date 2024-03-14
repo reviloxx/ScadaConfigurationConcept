@@ -4,21 +4,14 @@ using System.Text;
 
 namespace Scada.Component.Configuration;
 
-public class ScadaConfigurationService
+public class ScadaConfigurationService(IConfigurationRepository repository)
 {
-    private readonly IConfigurationRepository _repository;
-    private readonly IConfigurationRoot _initialConfiguration;
+    private readonly IConfigurationRepository _repository = repository;    
     private readonly List<IConfigurationContainer> _configurationContainers = [];
-
-    public ScadaConfigurationService(IConfigurationRepository repository)
-    {
-        _repository = repository;
-
-        _initialConfiguration = new ConfigurationBuilder()
+    private readonly IConfigurationRoot _initialConfiguration = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("initialComponentConfigs.json", optional: false)
             .Build();
-    }
 
     public void AddConfigurationContainer(IConfigurationContainer configurationContainer)
     {
@@ -33,20 +26,9 @@ public class ScadaConfigurationService
         var container = _configurationContainers.FirstOrDefault(x => x.ConfigurationKey == key);
 
         if (container == null)
-        {
-            await Console.Out.WriteLineAsync("No config found to update!");
             return;
-        }
 
         var configuration = new ConfigurationBuilder().AddJsonStream(new MemoryStream(Encoding.ASCII.GetBytes(jsonBody))).Build();
-
-        var validationResult = container.ValidateConfiguration(configuration);
-        if (!validationResult.IsValidConfiguration)
-        {
-            // TODO: expose validation errors to API response
-            await Console.Out.WriteLineAsync("Config not valid!");
-            return;
-        }
 
         await _repository.UpdateConfigurationAsync(key, configuration, cancellationToken);
         await PushComponentConfiguration(container, cancellationToken);
@@ -67,9 +49,10 @@ public class ScadaConfigurationService
 
         if (!validationResult.IsValidConfiguration)
         {
-            // TODO: handle invalid component configuration
-            // Does it make sense to continue execution in certain cases?
-            // Allow fixing the issue at runtime via API to update configs?
+            // TODO: Handling of invalid component config
+            // Can copmponents be disabled if no valid config is present?
+            // Should it be possible to update an invalid config and enable such a component at runtime?
+            // How should the user be notified if A) a config is invalid at startup and B) he tries to push an invalid config?
         }
 
         container.AcceptConfiguration(configurationSection);
@@ -77,17 +60,19 @@ public class ScadaConfigurationService
 
     private async Task<IConfiguration> GetLatestConfigurationSection(string key, CancellationToken cancellationToken = default)
     {
-        var section = await _repository.GetConfigurationAsync(key, cancellationToken);
+        var config = await _repository.GetConfigurationAsync(key, cancellationToken);
 
-        if (section != null)
-            return section;
+        if (config != null)
+            return config;
 
-        section = _initialConfiguration.GetSection(key);
+        config = _initialConfiguration.GetSection(key);
 
-        if (section == null)
+        // TODO: handling of missing config
+        // Should it be possible to continue execution and push a missing config at runtime?
+        if (config == null)
             throw new ApplicationException($"No configuration for key {key} available!");
 
-        await _repository.UpdateConfigurationAsync(key, section, cancellationToken);
-        return section;
+        await _repository.UpdateConfigurationAsync(key, config, cancellationToken);
+        return config;
     }
 }

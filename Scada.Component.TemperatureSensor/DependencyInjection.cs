@@ -7,7 +7,7 @@ public static class DependencyInjection
     public static void RegisterTemperatureSensor(this IServiceCollection services, ScadaConfigurationService configurationService)
     {
         var configurationContainer = new TemperatureSensorConfigurationContainer();
+        configurationService.AddConfigurationContainer(configurationContainer);
         services.AddSingleton(configurationContainer);
-        configurationService.AddConfigurationContainer(configurationContainer);        
     }
 }
