@@ -1,6 +1,6 @@
 **How to change the configurations at runtime**
 
-PUT http://localhost:5093/configurations
+PUT http://localhost:5093/update-configuration
 
     {
       "componentId": "d1574589-8764-4cbf-a79d-f5701f30c6df",
