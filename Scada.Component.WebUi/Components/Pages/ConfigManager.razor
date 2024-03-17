@@ -1,0 +1,85 @@
+﻿@page "/configs"
+
+@using System.Text.Json
+@using MudBlazor
+@using Scada.Component.WebUi.Interfaces
+@inject IConfigurationWebService ConfigurationWebService
+
+<MudGrid>
+    <MudItem xs="12" md="6">
+        <MudTable Items="@modelList">
+            <HeaderContent>
+                <MudTh>Component Id</MudTh>
+                <MudTh>Component Name</MudTh>
+                <MudTh></MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd>
+                    @context.ComponentId
+                </MudTd>
+                <MudTd>
+                    @context.ComponentName
+                </MudTd>
+                <MudTd>
+                    <MudIconButton Icon="@Icons.Material.Filled.Edit" Color="Color.Info" @onclick="() => ShowOverlay(modelList.IndexOf(context))" />
+                </MudTd>
+            </RowTemplate>
+        </MudTable>
+    </MudItem>
+    <MudItem xs="12" md="6">
+        @if (showOverlay)
+        {
+            <MudOverlay Visible="true" DarkBackground="true" AutoClose="true" />
+            <MudPaper Elevation="8" Class="overlay">
+                <EditForm Model="editingModel">
+                    <MudTextField Lines="20" DisableUnderLine=true @bind-Value="editingModel!.Configuration" Label="Configuration"></MudTextField>
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary" @onclick="async () => await SaveChangesAsync()">Apply</MudButton>
+                    <MudButton Variant="Variant.Filled" Color="Color.Secondary" @onclick="() => CancelChanges()">Cancel</MudButton>
+                </EditForm>
+            </MudPaper>
+        }
+    </MudItem>
+</MudGrid>
+
+<style>
+    .overlay {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(255, 255, 255, 0.9);
+        z-index: 1000;
+        padding: 20px;
+        border-radius: 8px;
+    }
+</style>
+
+@code {
+    private List<Scada.Core.Api.Models.ConfigurationModel> modelList = [];
+    private Scada.Core.Api.Models.ConfigurationModel? editingModel;
+    private bool showOverlay = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (ConfigurationWebService != null)
+            modelList = (await ConfigurationWebService.GetConfigurationsAsync()).ToList();
+    }
+
+    private void ShowOverlay(int index)
+    {
+        editingModel = modelList[index];
+        showOverlay = true;
+    }
+
+    private async Task SaveChangesAsync()
+    {
+        var updateModel = new Core.Api.Models.UpdateConfigurationModel { ComponentId = editingModel!.ComponentId, Configuration = editingModel!.Configuration };
+        await ConfigurationWebService.UpdateConfigurationAsync(updateModel);
+        showOverlay = false;
+    }
+
+    private void CancelChanges()
+    {
+        showOverlay = false;
+    }
+}

@@ -1,9 +1,9 @@
 {
-  "TemperatureSensor": {
+  "d1574589-8764-4cbf-a79d-f5701f30c6df": {
     "TemperatureUnit": "Celsius",
     "MeasurementIntervalMs": 2000
   },
-  "PressureSensor": {
+  "344f923d-9cf3-4d79-8e25-565d95a4b602": {
     "PressureUnit": "bar",
     "MeasurementIntervalMs": 3000
   }
