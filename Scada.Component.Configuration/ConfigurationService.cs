@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Scada.Component.Configuration;
 
-public class ScadaConfigurationService(IConfigurationRepository repository)
+public class ConfigurationService(IConfigurationRepository repository) : IConfigurationService
 {
     private readonly IConfigurationRepository _repository = repository;    
     private readonly List<IConfigurationContainer> _configurationContainers = [];
@@ -13,17 +13,17 @@ public class ScadaConfigurationService(IConfigurationRepository repository)
             .AddJsonFile("initialComponentConfigs.json", optional: false)
             .Build();
 
-    public void AddConfigurationContainer(IConfigurationContainer configurationContainer)
+    public void RegisterConfigurationContainer(IConfigurationContainer configurationContainer)
     {
-        if (_configurationContainers.Any(x => x.ConfigurationKey == configurationContainer.ConfigurationKey))
+        if (_configurationContainers.Any(x => x.ComponentId == configurationContainer.ComponentId))
             return;
 
         _configurationContainers.Add(configurationContainer);        
     }
 
-    public async Task UpdateConfiguration(string key, string jsonBody, CancellationToken cancellationToken = default)
+    public async Task UpdateConfigurationAsync(string key, string jsonBody, CancellationToken cancellationToken = default)
     {
-        var container = _configurationContainers.FirstOrDefault(x => x.ConfigurationKey == key);
+        var container = _configurationContainers.FirstOrDefault(x => x.ComponentId == key);
 
         if (container == null)
             return;
@@ -34,7 +34,7 @@ public class ScadaConfigurationService(IConfigurationRepository repository)
         await PushComponentConfiguration(container, cancellationToken);
     }
 
-    public async Task PushAllComponentConfigurations(CancellationToken cancellationToken = default)
+    public async Task PushAllComponentConfigurationsAsync(CancellationToken cancellationToken = default)
     {
         foreach (var container in _configurationContainers) 
         {
@@ -44,7 +44,7 @@ public class ScadaConfigurationService(IConfigurationRepository repository)
 
     private async Task PushComponentConfiguration(IConfigurationContainer container, CancellationToken cancellationToken = default)
     {
-        var configurationSection = await GetLatestConfigurationSection(container.ConfigurationKey, cancellationToken);
+        var configurationSection = await GetLatestConfigurationSection(container.ComponentId, cancellationToken);
         var validationResult = container.ValidateConfiguration(configurationSection);
 
         if (!validationResult.IsValidConfiguration)
@@ -74,5 +74,10 @@ public class ScadaConfigurationService(IConfigurationRepository repository)
 
         await _repository.UpdateConfigurationAsync(key, config, cancellationToken);
         return config;
+    }
+
+    public IEnumerable<IConfigurationContainer> GetConfigurationContainersAsync()
+    {
+        return _configurationContainers;
     }
 }

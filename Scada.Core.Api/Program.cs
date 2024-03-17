@@ -2,14 +2,16 @@ using Scada.Component.Configuration;
 using Scada.Component.TemperatureSensor;
 using Scada.Component.PressureSensor;
 using Scada.Core.Infrastructure.Repositories;
-using Scada.Core.Api;
+using Scada.Core.Api.Models;
+using Scada.Component.Configuration.Interfaces;
+using Scada.Core.Api.Extensions;
 
 
 // create configuration service
-var configurationService = new ScadaConfigurationService(new ConfigurationRepository());
+var configurationService = new ConfigurationService(new ConfigurationRepository());
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddSingleton(configurationService);
+builder.Services.AddSingleton<IConfigurationService>(configurationService);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -18,7 +20,7 @@ builder.Services.RegisterTemperatureSensor(configurationService);
 builder.Services.RegisterPressureSensor(configurationService);
 
 // push configurations to all registered components
-await configurationService.PushAllComponentConfigurations();
+await configurationService.PushAllComponentConfigurationsAsync();
 
 // start sensor services
 builder.Services.AddHostedService<TemperatureSensorService>();
@@ -30,8 +32,6 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.MapPut("/config", (ScadaConfigurationService configService, ConfigRequestModel requestModel) 
-    => configService.UpdateConfiguration(requestModel.ConfigurationKey, requestModel.Configuration))
-    .ProducesValidationProblem();
+app.MapEndpoints();
 
 app.Run();
