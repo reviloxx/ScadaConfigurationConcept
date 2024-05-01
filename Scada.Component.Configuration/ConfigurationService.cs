@@ -13,7 +13,7 @@ public class ConfigurationService(IConfigurationRepository repository) : IConfig
             .AddJsonFile("initialComponentConfigs.json", optional: false)
             .Build();
 
-    public void RegisterConfigurationContainer(IConfigurationContainer configurationContainer)
+    public void RegisterConfiguration(IConfigurationContainer configurationContainer)
     {
         if (_configurationContainers.Any(x => x.ComponentId == configurationContainer.ComponentId))
             return;
@@ -34,7 +34,7 @@ public class ConfigurationService(IConfigurationRepository repository) : IConfig
         await PushComponentConfiguration(container, cancellationToken);
     }
 
-    public async Task PushAllComponentConfigurationsAsync(CancellationToken cancellationToken = default)
+    public async Task PushAllConfigurationsAsync(CancellationToken cancellationToken = default)
     {
         foreach (var container in _configurationContainers) 
         {
@@ -76,7 +76,7 @@ public class ConfigurationService(IConfigurationRepository repository) : IConfig
         return config;
     }
 
-    public IEnumerable<IConfigurationContainer> GetConfigurationContainersAsync()
+    public IEnumerable<IConfigurationContainer> GetAllConfigurationsAsync()
     {
         return _configurationContainers;
     }

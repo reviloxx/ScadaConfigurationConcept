@@ -1,3 +1,4 @@
+using MudBlazor;
 using MudBlazor.Services;
 using Scada.Component.WebUi.Components;
 using Scada.Component.WebUi.Interfaces;
@@ -13,7 +14,13 @@ builder.Services.AddHttpClient<IConfigurationWebService, ConfigurationWebService
     client.BaseAddress = new Uri("http://localhost:5093");
 });
 
-builder.Services.AddMudServices();
+builder.Services.AddMudServices(config =>
+{
+    config.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.BottomCenter;
+    config.SnackbarConfiguration.VisibleStateDuration = 3000;
+    config.SnackbarConfiguration.HideTransitionDuration = 300;
+    config.SnackbarConfiguration.ShowTransitionDuration = 300;
+});
 
 var app = builder.Build();
 

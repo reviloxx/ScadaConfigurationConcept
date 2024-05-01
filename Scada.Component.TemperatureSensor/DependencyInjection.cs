@@ -7,7 +7,7 @@ public static class DependencyInjection
     public static void RegisterTemperatureSensor(this IServiceCollection services, IConfigurationService configurationService)
     {
         var configurationContainer = new TemperatureSensorConfigurationContainer();
-        configurationService.RegisterConfigurationContainer(configurationContainer);
+        configurationService.RegisterConfiguration(configurationContainer);
         services.AddSingleton(configurationContainer);
     }
 }

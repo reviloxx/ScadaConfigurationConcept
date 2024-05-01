@@ -8,7 +8,7 @@ public static class DependencyInjection
     public static void RegisterPressureSensor(this IServiceCollection services, IConfigurationService configurationService)
     {
         var configurationContainer = new PressureSensorConfigurationContainer();
-        configurationService.RegisterConfigurationContainer(configurationContainer);
+        configurationService.RegisterConfiguration(configurationContainer);
         services.AddSingleton(configurationContainer);
     }
 }

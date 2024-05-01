@@ -3,6 +3,7 @@
 @using System.Text.Json
 @using MudBlazor
 @using Scada.Component.WebUi.Interfaces
+@inject ISnackbar Snackbar
 @inject IConfigurationWebService ConfigurationWebService
 
 <MudGrid>
@@ -82,6 +83,7 @@
         var updateModel = new Core.Api.Models.UpdateConfigurationModel { ComponentId = editingModel!.ComponentId, Configuration = editingModel!.Configuration };
         await ConfigurationWebService.UpdateConfigurationAsync(updateModel);
         showOverlay = false;
+        Snackbar.Add($"Configuration of {editingModel.ComponentName} updated!", Severity.Success);
     }
 
     private void CancelChanges()

@@ -20,7 +20,7 @@ builder.Services.RegisterTemperatureSensor(configurationService);
 builder.Services.RegisterPressureSensor(configurationService);
 
 // push configurations to all registered components
-await configurationService.PushAllComponentConfigurationsAsync();
+await configurationService.PushAllConfigurationsAsync();
 
 // start sensor services
 builder.Services.AddHostedService<TemperatureSensorService>();
